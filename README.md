@@ -7,7 +7,7 @@ This repository contains a 8-bit CPU to implement some elementary commands and e
 ## 🗂️ Repository Structure
 * **`SystemVerilog_8-bit_CPU/`** - Hardware description (architecture) and TB files for simulations amd tests.
 * **`CPU_Simulation_Pictures&Logs.docx`** - File with simulation graphs and simulation loggs (created in TB files).
-* * **`Processor_Commands.docx`** - File with comamnds' codes.
+* **`Processor_Commands.docx`** - File with comamnds' codes.
   
 ## ⚙️ Short Hardware Overview
 * **Selected FPGA:** Artix-7.
@@ -23,7 +23,8 @@ This repository contains a 8-bit CPU to implement some elementary commands and e
 * **CPU architecture (SystemVerilog)
 - [x] ALU (Mathematical & Logical commands/calculations.
 - [x] Regsiter File (Registers read/write control).
-- [ ] Data Memory (Read/write constants & variables).
+- [ ] Flag Register (Carri out, zero, overflow,)
+- [X] Data Memory (Read/write constants & variables).
 - [ ] Instruction Memory (Read/write instructions).
 - [ ] Program Counter (Instruction address tracking & flow control).
 - [ ] Control Unit (Instructions decoding & distribution).
@@ -39,3 +40,5 @@ This repository contains a 8-bit CPU to implement some elementary commands and e
 ## 🖼️ Screenshots
 <img width="974" height="256" alt="image" src="https://github.com/user-attachments/assets/b6eae695-3033-4864-8eb4-f9cb69dccd0e" />
 <img width="974" height="218" alt="image" src="https://github.com/user-attachments/assets/4cd68831-c46b-489d-8c06-f70be4eb9430" />
+<img width="974" height="218" alt="image" src="https://github.com/user-attachments/assets/c35c3542-c976-4d7e-970c-e03deec091c1" />
+

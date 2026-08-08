@@ -3,7 +3,7 @@
 
 module ALU #(parameter DATA_WIDTH = 8)
 (
-    input logic [3:0] command,
+    input logic [DATA_WIDTH/2-1:0] command,
     input logic signed [DATA_WIDTH-1:0] data_in_operand_a,
     input logic signed [DATA_WIDTH-1:0] data_in_operand_b,
     input logic carry_in,

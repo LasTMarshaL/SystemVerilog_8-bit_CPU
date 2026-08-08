@@ -50,7 +50,7 @@ module Register_File_tb #(parameter DATA_WIDTH = 8);
             @(posedge clk)
             #1
                 
-            if (read_register_0 == 8'sd24)
+            if (read_register_0 == write_register_data)
                 begin
                     $display("SUCCESS: Number %d was written in register_0", read_register_0);
                 end
@@ -70,7 +70,7 @@ module Register_File_tb #(parameter DATA_WIDTH = 8);
             @ (posedge clk)
             #1
                 
-            if (read_register_1 == -8'sd38)
+            if (read_register_1 == write_register_data)
                 begin
                     $display("SUCCESS: Number %d was written in register_1", read_register_1);
                 end

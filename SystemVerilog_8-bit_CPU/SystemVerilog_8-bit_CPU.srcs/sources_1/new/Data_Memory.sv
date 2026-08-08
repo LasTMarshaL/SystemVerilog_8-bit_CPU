@@ -31,7 +31,10 @@ module Data_Memory #(parameter DATA_WIDTH = 8, ADDRESS_WIDTH = 8)
                     memory[address] <= write_data;
                     read_data <= write_data;
                 end
-            read_data <= memory[address];
+            else
+                begin
+                    read_data <= memory[address];
+                end
         end
 
 

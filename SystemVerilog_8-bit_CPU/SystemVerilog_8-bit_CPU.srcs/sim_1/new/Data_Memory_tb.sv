@@ -44,10 +44,8 @@ module Data_Memory_tb #(parameter DATA_WIDTH = 8, ADDRESS_WIDTH = 8);
             
             @(posedge clk);
             #1 
-            write_enable = 0; 
-            @(posedge clk);
-            #1
             
+            write_enable = 0; 
             if (read_data == write_data)
                 begin
                     $display("SUCCESS: Expected data (%d) was written to the address cell %d", write_data, address);
@@ -66,10 +64,8 @@ module Data_Memory_tb #(parameter DATA_WIDTH = 8, ADDRESS_WIDTH = 8);
             
             @(posedge clk);
             #1 
-            write_enable = 0; 
-            @(posedge clk);
-            #1
             
+            write_enable = 0; 
             if (read_data == write_data)
                 begin
                     $display("SUCCESS: Expected data (%d) was written to the address cell %d", write_data, address);
@@ -88,10 +84,8 @@ module Data_Memory_tb #(parameter DATA_WIDTH = 8, ADDRESS_WIDTH = 8);
             
             @(posedge clk);
             #1 
-            write_enable = 0; 
-            @(posedge clk);
-            #1
             
+            write_enable = 0; 
             if (read_data == write_data)
                 begin
                     $display("SUCCESS: Adrress cell %d was reset to zero", address);
@@ -110,10 +104,8 @@ module Data_Memory_tb #(parameter DATA_WIDTH = 8, ADDRESS_WIDTH = 8);
             
             @(posedge clk); 
             #1
-            write_enable = 0; 
-            @(posedge clk);
-            #1
             
+            write_enable = 0; 
             if (read_data == write_data)
                 begin
                     $display("SUCCESS: Address cell %d was reset to zero", address);

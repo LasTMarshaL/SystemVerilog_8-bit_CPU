@@ -50,6 +50,7 @@ module Register_File_tb #(parameter DATA_WIDTH = 8);
             @(posedge clk)
             #1
                 
+            write_register_enable = 0;
             if (read_register_0 == write_register_data)
                 begin
                     $display("SUCCESS: Number %d was written in register_0", read_register_0);
@@ -58,7 +59,6 @@ module Register_File_tb #(parameter DATA_WIDTH = 8);
                 begin
                     $display("FAIL: Number %d was not written in register_0", write_register_data);
                 end
-           write_register_enable = 0;
             
             #500
             @(negedge clk)
@@ -69,7 +69,8 @@ module Register_File_tb #(parameter DATA_WIDTH = 8);
             
             @ (posedge clk)
             #1
-                
+            write_register_enable = 0;
+            
             if (read_register_1 == write_register_data)
                 begin
                     $display("SUCCESS: Number %d was written in register_1", read_register_1);
@@ -78,7 +79,6 @@ module Register_File_tb #(parameter DATA_WIDTH = 8);
                 begin
                     $display("FAIL: Number %d was not written in register_1", write_register_data);
                 end
-             write_register_enable = 0;
                 
             #500
             @(negedge clk)

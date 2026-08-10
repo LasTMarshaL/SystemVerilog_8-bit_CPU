@@ -88,11 +88,11 @@ module Data_Memory_tb #(parameter DATA_WIDTH = 8, ADDRESS_WIDTH = 8);
             write_enable = 0; 
             if (read_data == write_data)
                 begin
-                    $display("SUCCESS: Adrress cell %d was reset to zero", address);
+                    $display("SUCCESS: Address cell %d was reset to zero", address);
                 end
             else
                 begin
-                    $display("FAIL: Adrress cell %d was not reset to zero", address);
+                    $display("FAIL: Address cell %d was not reset to zero", address);
                 end
             
             #200

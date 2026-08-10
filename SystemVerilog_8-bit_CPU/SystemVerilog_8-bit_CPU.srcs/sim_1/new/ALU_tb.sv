@@ -47,7 +47,7 @@ module ALU_tb #(parameter DATA_WIDTH = 8);
                     $display("FAIL ADD: Expected result (%d) was not received correctly", data_out);
                 end
             
-            # 200
+            #200
             command = 4'b0001;
             data_in_operand_a = 8'sd4;
             data_in_operand_b = 8'sd11;
@@ -63,7 +63,7 @@ module ALU_tb #(parameter DATA_WIDTH = 8);
                     $display("FAIL SUB: Expected result (%d) was not received correctly", data_out);
                 end
                 
-            # 200
+            #200
             command = 4'b0110;
             data_in_operand_a = 8'sd5;
             data_in_operand_b = 8'sd34;
@@ -79,7 +79,7 @@ module ALU_tb #(parameter DATA_WIDTH = 8);
                     $display("FAIL ADC: Expected result (%d) was not received correctly", data_out);
                 end
                 
-            # 200
+            #200
             command = 4'b1001;
             data_in_operand_a = 8'sd56;
             data_in_operand_b = 8'sd17;
@@ -111,7 +111,7 @@ module ALU_tb #(parameter DATA_WIDTH = 8);
                     $display("FAIL AND: Expected result (%d) was not received correctly", data_out);
                 end
                 
-            # 200
+            #200
             command = 4'b0100;
             data_in_operand_a = 8'sd1;
             data_in_operand_b = 8'sd0;
@@ -143,7 +143,7 @@ module ALU_tb #(parameter DATA_WIDTH = 8);
                     $display("FAIL NEG: Expected result (%d) was not received correctly", data_out);
                 end
                 
-            # 200
+            #200
             command = 4'b0011;
             data_in_operand_a = 8'sd16;
             data_in_operand_b = '0;
@@ -159,7 +159,7 @@ module ALU_tb #(parameter DATA_WIDTH = 8);
                     $display("FAIL >>>: Expected result (%d) was not received correctly", data_out);
                 end
                 
-            # 200
+            #200
             command = 4'b0111;
             data_in_operand_a = 8'sd16;
             data_in_operand_b = '0;
@@ -175,7 +175,7 @@ module ALU_tb #(parameter DATA_WIDTH = 8);
                     $display("FAIL <<<: Expected result (%d) was not received correctly", data_out);
                 end
                 
-            # 200
+            #200
             command = 4'b1111;
             data_in_operand_a = '0;
             data_in_operand_b = '0;
@@ -207,7 +207,7 @@ module ALU_tb #(parameter DATA_WIDTH = 8);
                     $display("FAIL: Default value was not set");
                 end
                 
-            # 200
+            #200
             command = 4'b0000;
             data_in_operand_a = 8'sd127;
             data_in_operand_b = 8'sd1;
@@ -223,7 +223,7 @@ module ALU_tb #(parameter DATA_WIDTH = 8);
                     $display("FAIL: (+) Overflow was not set");
                 end
                 
-            # 200
+            #200
             command = 4'b0001;
             data_in_operand_a = -8'sd128;
             data_in_operand_b = 8'sd1;

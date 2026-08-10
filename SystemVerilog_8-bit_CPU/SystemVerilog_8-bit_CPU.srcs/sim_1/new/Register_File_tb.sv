@@ -40,7 +40,7 @@ module Register_File_tb #(parameter DATA_WIDTH = 8);
             
             #20 reset = 0;
             
-            #500
+            #200
             @(negedge clk)
             
             write_register_enable = 1;
@@ -60,7 +60,7 @@ module Register_File_tb #(parameter DATA_WIDTH = 8);
                     $display("FAIL: Number %d was not written in register_0", write_register_data);
                 end
             
-            #500
+            #200
             @(negedge clk)
             
             write_register_enable = 1;
@@ -80,7 +80,7 @@ module Register_File_tb #(parameter DATA_WIDTH = 8);
                     $display("FAIL: Number %d was not written in register_1", write_register_data);
                 end
                 
-            #500
+            #200
             @(negedge clk)
             
             write_register_select = 0;
@@ -98,7 +98,7 @@ module Register_File_tb #(parameter DATA_WIDTH = 8);
                     $display("FAIL: register_0 is changed");
                 end
                 
-            #500
+            #200
             @(negedge clk)
             
             write_register_select = 0;
@@ -117,7 +117,7 @@ module Register_File_tb #(parameter DATA_WIDTH = 8);
                     $display("FAIL: register_1 is changed");
                 end
                 
-            #1000 $finish;
+            #200 $finish;
         end    
 
 

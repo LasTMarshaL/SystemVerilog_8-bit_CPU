@@ -11,9 +11,9 @@ module ALU #(parameter DATA_WIDTH = 8)
     output logic signed [DATA_WIDTH-1:0] data_out,
     
     output logic zero,
-    output logic overflow,
+    output logic carry_out,
     output logic sign,
-    output logic carry_out
+    output logic overflow
 );
 
 

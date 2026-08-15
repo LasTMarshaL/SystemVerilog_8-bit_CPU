@@ -7,7 +7,7 @@ This repository contains a 8-bit CPU to implement some elementary commands and e
 ## 🗂️ Repository Structure
 * **`SystemVerilog_8-bit_CPU/`** - Hardware description (architecture) and TB files for simulations amd tests.
 * **`CPU_Simulation_Pictures&Logs.docx`** - File with simulation graphs and simulation loggs (created in TB files).
-* * **`Processor_Commands.docx`** - File with comamnds' codes.
+* **`Processor_Commands.docx`** - File with comamnds' codes.
   
 ## ⚙️ Short Hardware Overview
 * **Selected FPGA:** Artix-7.

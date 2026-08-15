@@ -23,7 +23,7 @@ This repository contains a 8-bit CPU to implement some elementary commands and e
 * **CPU architecture (SystemVerilog)**
 - [x] ALU (Mathematical & Logical commands/calculations.
 - [x] Regsiter File (Registers read/write control).
-- [X] Flag Register (Carry, Zero, Sign, Overflow)
+- [X] Flag Register (Carry, Zero, Sign, Overflow).
 - [X] Data Memory (Read/write constants & variables).
 - [X] Instruction Memory (Read/write instructions).
 - [ ] Program Counter (Instruction address tracking & flow control).

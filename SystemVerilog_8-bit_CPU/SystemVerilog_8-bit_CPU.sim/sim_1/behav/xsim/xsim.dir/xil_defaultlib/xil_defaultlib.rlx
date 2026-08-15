@@ -1,0 +1,15 @@
+0.7
+2020.2
+Jun 16 2026
+11:10:11
+C:/Users/Omen/SystemVerilog_8-bit_CPU/SystemVerilog_8-bit_CPU.sim/sim_1/behav/xsim/glbl.v,1773749341,verilog,,,,glbl,,uvm,,,,,,
+C:/Users/Omen/SystemVerilog_8-bit_CPU/SystemVerilog_8-bit_CPU.srcs/sim_1/new/ALU_tb.sv,1786134254,systemVerilog,,,,ALU_tb,,uvm,D:/2026.1/Vivado/data/rsb/busdef,,,,,
+C:/Users/Omen/SystemVerilog_8-bit_CPU/SystemVerilog_8-bit_CPU.srcs/sim_1/new/Data_Memory_tb.sv,1786207259,systemVerilog,,,,Data_Memory_tb,,uvm,D:/2026.1/Vivado/data/rsb/busdef,,,,,
+C:/Users/Omen/SystemVerilog_8-bit_CPU/SystemVerilog_8-bit_CPU.srcs/sim_1/new/Instruction_Memory_tb.sv,1786795732,systemVerilog,,,,Instruction_Memory_tb,,uvm,D:/2026.1/Vivado/data/rsb/busdef,,,,,
+C:/Users/Omen/SystemVerilog_8-bit_CPU/SystemVerilog_8-bit_CPU.srcs/sim_1/new/Register_File_tb.sv,1786282810,systemVerilog,,,,Register_File_tb,,uvm,D:/2026.1/Vivado/data/rsb/busdef,,,,,
+C:/Users/Omen/SystemVerilog_8-bit_CPU/SystemVerilog_8-bit_CPU.srcs/sources_1/new/ALU.sv,1786279546,systemVerilog,,C:/Users/Omen/SystemVerilog_8-bit_CPU/SystemVerilog_8-bit_CPU.srcs/sim_1/new/ALU_tb.sv,,ALU,,uvm,D:/2026.1/Vivado/data/rsb/busdef,,,,,
+C:/Users/Omen/SystemVerilog_8-bit_CPU/SystemVerilog_8-bit_CPU.srcs/sources_1/new/Data_Memory.sv,1786637533,systemVerilog,,C:/Users/Omen/SystemVerilog_8-bit_CPU/SystemVerilog_8-bit_CPU.srcs/sim_1/new/Data_Memory_tb.sv,,Data_Memory,,uvm,D:/2026.1/Vivado/data/rsb/busdef,,,,,
+C:/Users/Omen/SystemVerilog_8-bit_CPU/SystemVerilog_8-bit_CPU.srcs/sources_1/new/Flag_Register.sv,1786269188,systemVerilog,C:/Users/Omen/SystemVerilog_8-bit_CPU/SystemVerilog_8-bit_CPU.srcs/sources_1/new/Flag_Register_tb.sv,C:/Users/Omen/SystemVerilog_8-bit_CPU/SystemVerilog_8-bit_CPU.srcs/sources_1/new/Flag_Register_tb.sv,,$unit_Flag_Register_sv_1833549163;Flag_Register,,uvm,D:/2026.1/Vivado/data/rsb/busdef,,,,,
+C:/Users/Omen/SystemVerilog_8-bit_CPU/SystemVerilog_8-bit_CPU.srcs/sources_1/new/Flag_Register_tb.sv,1786283140,systemVerilog,,,,Flag_Register_tb,,uvm,D:/2026.1/Vivado/data/rsb/busdef,,,,,
+C:/Users/Omen/SystemVerilog_8-bit_CPU/SystemVerilog_8-bit_CPU.srcs/sources_1/new/Instruction_Memory.sv,1786794400,systemVerilog,,C:/Users/Omen/SystemVerilog_8-bit_CPU/SystemVerilog_8-bit_CPU.srcs/sim_1/new/Instruction_Memory_tb.sv,,Instruction_Memory,,uvm,D:/2026.1/Vivado/data/rsb/busdef,,,,,
+C:/Users/Omen/SystemVerilog_8-bit_CPU/SystemVerilog_8-bit_CPU.srcs/sources_1/new/Register_Faile.sv,1786100901,systemVerilog,,C:/Users/Omen/SystemVerilog_8-bit_CPU/SystemVerilog_8-bit_CPU.srcs/sim_1/new/Register_File_tb.sv,,Register_File,,uvm,D:/2026.1/Vivado/data/rsb/busdef,,,,,

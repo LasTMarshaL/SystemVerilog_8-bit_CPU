@@ -1,5 +1,0 @@
-Time resolution is 1 ps
-SUCCESS: Expected data ( 4660) is located in the address cell   0
-SUCCESS: Expected data (13092) is located in the address cell   1
-SUCCESS: Expected data ( 8497) is located in the address cell   2
-$finish called at time : 603 ns : File "C:/Users/Omen/SystemVerilog_8-bit_CPU/SystemVerilog_8-bit_CPU.srcs/sim_1/new/Instruction_Memory_tb.sv" Line 57

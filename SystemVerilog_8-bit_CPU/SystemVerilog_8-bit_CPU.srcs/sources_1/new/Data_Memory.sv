@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 
 
-module Data_Memory #(parameter DATA_WIDTH = 8, ADDRESS_WIDTH = 8)
+module Data_Memory #(parameter ADDRESS_WIDTH = 8, DATA_WIDTH = 8)
 (
     input logic clk,
     

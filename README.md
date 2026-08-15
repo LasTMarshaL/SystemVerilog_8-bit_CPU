@@ -20,15 +20,15 @@ This repository contains a 8-bit CPU to implement some elementary commands and e
 * ⚠️!The author bears no responsibility for the reader's actions!⚠️
 
 ## 🚀 Roadmap
-* **CPU architecture (SystemVerilog)
+* **CPU architecture (SystemVerilog)**
 - [x] ALU (Mathematical & Logical commands/calculations.
 - [x] Regsiter File (Registers read/write control).
-- [ ] Data Memory (Read/write constants & variables).
-- [ ] Instruction Memory (Read/write instructions).
+- [X] Flag Register (Carry, Zero, Sign, Overflow)
+- [X] Data Memory (Read/write constants & variables).
+- [X] Instruction Memory (Read/write instructions).
 - [ ] Program Counter (Instruction address tracking & flow control).
 - [ ] Control Unit (Instructions decoding & distribution).
 - [ ] CPU top (Unite all parts & data transfer).
-- [ ] Full document (datasheet) instruction.
 * These are current tasks (goals), the next stage will be creating Python script for translating commands into machine code and loading instructions ("mini-assembler" for test). After that, connecting RISC-V standard compilator to translate C commands into machine code and launch sterling PL <-> CPU interaction.
   
 ## 🧪 Used Technologies & Software

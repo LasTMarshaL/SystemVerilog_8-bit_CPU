@@ -24,6 +24,7 @@ module Data_Memory #(parameter ADDRESS_WIDTH = 8, DATA_WIDTH = 8)
                 end
         end
     
+    
     always_ff @(posedge clk)
         begin
             if (write_enable)

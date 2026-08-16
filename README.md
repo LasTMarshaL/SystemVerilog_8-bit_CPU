@@ -26,7 +26,7 @@ This repository contains a 8-bit CPU to implement some elementary commands and e
 - [X] Flag Register (Carry, Zero, Sign, Overflow).
 - [X] Data Memory (Read/write constants & variables).
 - [X] Instruction Memory (Read/write instructions).
-- [ ] Program Counter (Instruction address tracking & flow control).
+- [X] Program Counter (Instruction address tracking & flow control).
 - [ ] Control Unit (Instructions decoding & distribution).
 - [ ] CPU top (Unite all parts & data transfer).
 * These are current tasks (goals), the next stage will be creating Python script for translating commands into machine code and loading instructions ("mini-assembler" for test). After that, connecting RISC-V standard compilator to translate C commands into machine code and launch sterling PL <-> CPU interaction.
@@ -37,5 +37,18 @@ This repository contains a 8-bit CPU to implement some elementary commands and e
 * Vivado Simulator (Digital Simulation)
 
 ## 🖼️ Screenshots
-<img width="974" height="256" alt="image" src="https://github.com/user-attachments/assets/b6eae695-3033-4864-8eb4-f9cb69dccd0e" />
-<img width="974" height="218" alt="image" src="https://github.com/user-attachments/assets/4cd68831-c46b-489d-8c06-f70be4eb9430" />
+**ALU**
+<img width="974" height="265" alt="image" src="https://github.com/user-attachments/assets/2ef06271-8a6b-4d85-9972-dd7d802fbae3" />
+**Register File**
+<img width="974" height="226" alt="image" src="https://github.com/user-attachments/assets/5f520bd1-b0b1-46c1-a06b-4bb2cced574c" />
+**Flag Register**
+<img width="974" height="168" alt="image" src="https://github.com/user-attachments/assets/832493dd-a8ff-4225-a665-012ca032dfad" />
+**Data Memory**
+<img width="974" height="193" alt="image" src="https://github.com/user-attachments/assets/db86e434-d22d-4fa7-90cc-ff2c8a38894c" />
+**Instruction Memoty**
+![Uploading image.png…]()
+**Program Counter**
+![Uploading image.png…]()
+
+
+

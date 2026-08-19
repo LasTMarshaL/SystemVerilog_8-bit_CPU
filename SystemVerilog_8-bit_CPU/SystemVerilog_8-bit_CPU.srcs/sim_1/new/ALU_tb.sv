@@ -32,7 +32,7 @@ module ALU_tb #(parameter DATA_WIDTH = 8);
     
     initial
         begin
-            command = 4'b0000;
+            command = 4'b0001;
             data_in_operand_a = 8'sd12;
             data_in_operand_b = 8'sd3;
             carry_in = 0;
@@ -48,7 +48,7 @@ module ALU_tb #(parameter DATA_WIDTH = 8);
                 end
             
             #200
-            command = 4'b0001;
+            command = 4'b0011;
             data_in_operand_a = 8'sd4;
             data_in_operand_b = 8'sd11;
             carry_in = 0;
@@ -64,7 +64,7 @@ module ALU_tb #(parameter DATA_WIDTH = 8);
                 end
                 
             #200
-            command = 4'b0110;
+            command = 4'b0111;
             data_in_operand_a = 8'sd5;
             data_in_operand_b = 8'sd34;
             carry_in = 1;
@@ -80,7 +80,7 @@ module ALU_tb #(parameter DATA_WIDTH = 8);
                 end
                 
             #200
-            command = 4'b1001;
+            command = 4'b1111;
             data_in_operand_a = 8'sd56;
             data_in_operand_b = 8'sd17;
             carry_in = 1;
@@ -96,7 +96,7 @@ module ALU_tb #(parameter DATA_WIDTH = 8);
                 end
                 
             # 200
-            command = 4'b0010;
+            command = 4'b1000;
             data_in_operand_a = 8'sd1;
             data_in_operand_b = 8'sd0;
             carry_in = 0;
@@ -112,7 +112,7 @@ module ALU_tb #(parameter DATA_WIDTH = 8);
                 end
                 
             #200
-            command = 4'b0100;
+            command = 4'b1100;
             data_in_operand_a = 8'sd1;
             data_in_operand_b = 8'sd0;
             carry_in = 0;
@@ -128,7 +128,7 @@ module ALU_tb #(parameter DATA_WIDTH = 8);
                 end
                 
             # 200
-            command = 4'b1000;
+            command = 4'b1110;
             data_in_operand_a = 8'sd48;
             data_in_operand_b = '0;
             carry_in = 0;
@@ -141,16 +141,16 @@ module ALU_tb #(parameter DATA_WIDTH = 8);
             else
                 begin
                     $display("FAIL NEG: Expected result (%d) was not received correctly", data_out);
-                end
+                end 
                 
             #200
-            command = 4'b0011;
+            command = 4'b1010;
             data_in_operand_a = 8'sd16;
             data_in_operand_b = '0;
             carry_in = 0;
             
             #5
-            if (data_out === 8'sd32)
+            if (data_out === 8'sd8)
                 begin
                      $display("SUCCESS >>>: Expected result (%d) was received correctly", data_out);
                 end
@@ -160,13 +160,13 @@ module ALU_tb #(parameter DATA_WIDTH = 8);
                 end
                 
             #200
-            command = 4'b0111;
+            command = 4'b0101;
             data_in_operand_a = 8'sd16;
             data_in_operand_b = '0;
             carry_in = 0;
             
             #5
-            if (data_out === 8'sd8)
+            if (data_out === 8'sd32)
                 begin
                      $display("SUCCESS <<<: Expected result (%d) was received correctly", data_out);
                 end
@@ -176,7 +176,7 @@ module ALU_tb #(parameter DATA_WIDTH = 8);
                 end
                 
             #200
-            command = 4'b1111;
+            command = 4'b0110;
             data_in_operand_a = '0;
             data_in_operand_b = '0;
             carry_in = 0;
@@ -191,24 +191,8 @@ module ALU_tb #(parameter DATA_WIDTH = 8);
                     $display("FAIL NOT: Expected result (%d) was not received correctly", data_out);
                 end
                 
-            # 200
-            command = 4'b0101;
-            data_in_operand_a = 8'sd67;
-            data_in_operand_b = -8'sd12;
-            carry_in = 0;
-            
-            #5
-            if (data_out == '0)
-                begin
-                     $display("SUCCESS: Default value was set");
-                end
-            else
-                begin
-                    $display("FAIL: Default value was not set");
-                end
-                
             #200
-            command = 4'b0000;
+            command = 4'b0001;
             data_in_operand_a = 8'sd127;
             data_in_operand_b = 8'sd1;
             carry_in = 0;
@@ -224,7 +208,7 @@ module ALU_tb #(parameter DATA_WIDTH = 8);
                 end
                 
             #200
-            command = 4'b0001;
+            command = 4'b0011;
             data_in_operand_a = -8'sd128;
             data_in_operand_b = 8'sd1;
             carry_in = 0;

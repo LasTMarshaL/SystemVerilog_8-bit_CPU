@@ -27,7 +27,7 @@ This repository contains a 8-bit CPU to implement some elementary commands and e
 - [X] Data Memory (Read/write constants & variables).
 - [X] Instruction Memory (Read/write instructions).
 - [X] Program Counter (Instruction address tracking & flow control).
-- [ ] Control Unit (Instructions decoding & distribution).
+- [X] Control Unit (Instructions decoding & distribution).
 - [ ] CPU top (Unite all parts & data transfer).
 * These are current tasks (goals), the next stage will be creating Python script for translating commands into machine code and loading instructions ("mini-assembler" for test). After that, connecting RISC-V standard compilator to translate C commands into machine code and launch sterling PL <-> CPU interaction.
   
@@ -46,9 +46,12 @@ This repository contains a 8-bit CPU to implement some elementary commands and e
 **Data Memory**
 <img width="974" height="193" alt="image" src="https://github.com/user-attachments/assets/db86e434-d22d-4fa7-90cc-ff2c8a38894c" />
 **Instruction Memoty**
-![Uploading image.png…]()
+<img width="974" height="298" alt="image" src="https://github.com/user-attachments/assets/8193cea3-8313-4478-a3f0-b75fae4f0dd7" />
 **Program Counter**
 ![Uploading image.png…]()
+**Control Unit**
+![Uploading image.png…]()
+
 
 
 

@@ -1,13 +1,7 @@
 `timescale 1ns / 1ps
 
 
-typedef struct packed
-{
-    logic zero;
-    logic carry_out;
-    logic sign;
-    logic overflow;
-} flags_t;
+import CPU_Package::*;
 
 
 module Flag_Register

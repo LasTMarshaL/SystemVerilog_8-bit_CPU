@@ -1,6 +1,9 @@
 `timescale 1ns / 1ps
 
 
+import CPU_Package::*;
+
+
 module Flag_Register_tb();
 
 

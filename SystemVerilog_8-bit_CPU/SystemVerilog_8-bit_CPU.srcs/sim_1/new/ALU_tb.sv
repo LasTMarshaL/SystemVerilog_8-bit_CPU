@@ -1,6 +1,9 @@
 `timescale 1ns / 1ps
 
 
+import CPU_Package::*;
+
+
 module ALU_tb #(parameter DATA_WIDTH = 8);
 
 
@@ -11,11 +14,7 @@ module ALU_tb #(parameter DATA_WIDTH = 8);
     
     logic signed [DATA_WIDTH-1:0] data_out;
     
-    logic zero;
-    logic overflow;
-    logic sign;
-    logic carry_out;
-    
+    flags_t flags;
     
     ALU uut (
         .command(command),
@@ -23,10 +22,7 @@ module ALU_tb #(parameter DATA_WIDTH = 8);
         .data_in_operand_b(data_in_operand_b),
         .carry_in(carry_in),
         .data_out(data_out),
-        .zero(zero),
-        .overflow(overflow),
-        .sign(sign),
-        .carry_out(carry_out)
+        .flags(flags)
     );
     
     
@@ -198,7 +194,7 @@ module ALU_tb #(parameter DATA_WIDTH = 8);
             carry_in = 0;
             
             #5
-            if (overflow == 8'sb1)
+            if (flags.overflow == 8'sb1)
                 begin
                      $display("SUCCESS: (+) Overflow was set");
                 end
@@ -214,7 +210,7 @@ module ALU_tb #(parameter DATA_WIDTH = 8);
             carry_in = 0;
             
             #5
-            if (overflow == 8'sb1)
+            if (flags.overflow == 8'sb1)
                 begin
                      $display("SUCCESS: (-) Overflow was set");
                 end

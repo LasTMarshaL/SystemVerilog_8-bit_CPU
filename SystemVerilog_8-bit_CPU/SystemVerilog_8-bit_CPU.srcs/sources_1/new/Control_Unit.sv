@@ -4,10 +4,11 @@
 module Control_Unit #(parameter INSTRUCTION_WIDTH = 16, OPERATION_WIDTH = 4)
 (
     input logic [INSTRUCTION_WIDTH-1:0] instruction,
+    input logic zero_flag,
     
     output logic [OPERATION_WIDTH-1:0] alu_operation,
-    input logic zero_flag,
-    output logic register_write_enable,  
+    output logic register_write_enable, 
+    output logic flag_register_write_enable, 
     output logic jump_enable,
     output logic pc_enable ,
     
@@ -24,6 +25,7 @@ module Control_Unit #(parameter INSTRUCTION_WIDTH = 16, OPERATION_WIDTH = 4)
     always_comb 
         begin
             alu_operation = 4'b0000;
+            flag_register_write_enable = 1'b0;
             register_write_enable = 1'b0;
             jump_enable = 1'b0;
             pc_enable   = 1'b1;
@@ -77,6 +79,7 @@ module Control_Unit #(parameter INSTRUCTION_WIDTH = 16, OPERATION_WIDTH = 4)
                 begin
                     alu_operation = operation_code;
                     register_write_enable = 1'b1;
+                    flag_register_write_enable = 1'b1;
                     register_write_source = 2'b00;
                     
                 end

@@ -27,9 +27,6 @@ module TOP_Unit #(parameter INSTRUCTION_WIDTH = 16, OPERATION_WIDTH = 4, DATA_WI
     logic data_memory_write;      
     logic [1:0] register_write_source;
     
-    
-    logic write_register_select;
-    
     logic [DATA_WIDTH-1:0] write_register_data_mux;
     
     logic signed [DATA_WIDTH-1:0] register_0_data;
@@ -41,9 +38,14 @@ module TOP_Unit #(parameter INSTRUCTION_WIDTH = 16, OPERATION_WIDTH = 4, DATA_WI
     flags_t alu_register_flags;
     flags_t current_register_flags;
     
+    logic [DATA_WIDTH-1:0] data_memory_output;
+    logic [DATA_WIDTH-1:0] data_memory_write_source_mux;
+    
+    assign data_memory_write_source_mux = (instruction[INSTRUCTION_WIDTH-OPERATION_WIDTH-1:INSTRUCTION_WIDTH-OPERATION_WIDTH-REGISTER_SELECTION_WIDTH] == 1'b0) ? register_0_data : register_1_data;
+    
     assign write_register_data_mux = (register_write_source == 2'b00) ? alu_result:    
-                        (register_write_source == 2'b01) ? data_memory_read:     
-                                                            instruction[INSTRUCTION_WIDTH-OPERATION_WIDTH-REGISTER_SELECTION_WIDTH-1:INSTRUCTION_WIDTH-OPERATION_WIDTH-REGISTER_SELECTION_WIDTH-8];
+                        (register_write_source == 2'b01) ? data_memory_output:     
+                                                            instruction[INSTRUCTION_WIDTH-OPERATION_WIDTH-REGISTER_SELECTION_WIDTH-1:INSTRUCTION_WIDTH-OPERATION_WIDTH-REGISTER_SELECTION_WIDTH-ADDRESS_WIDTH];
     
     
     ALU alu_instance ( 
@@ -58,7 +60,7 @@ module TOP_Unit #(parameter INSTRUCTION_WIDTH = 16, OPERATION_WIDTH = 4, DATA_WI
     Register_File register_file_instance ( 
         .clk(clk),
         .reset(reset),
-        .write_register_enable(write_register_enable),
+        .write_register_enable(register_write_enable),
         .write_register_select(instruction[INSTRUCTION_WIDTH-OPERATION_WIDTH-REGISTER_SELECTION_WIDTH]),
         .write_register_data(write_register_data_mux),
         .read_register_0(register_0_data),
@@ -73,11 +75,20 @@ module TOP_Unit #(parameter INSTRUCTION_WIDTH = 16, OPERATION_WIDTH = 4, DATA_WI
         .flags_out(current_register_flags)
     );
     
+    Data_Memory data_memory_instance (
+        .clk(clk),
+        .write_enable(data_memory_write),
+        .read_enable(data_memory_read),
+        .address(instruction[INSTRUCTION_WIDTH-OPERATION_WIDTH-REGISTER_SELECTION_WIDTH-1:INSTRUCTION_WIDTH-OPERATION_WIDTH-REGISTER_SELECTION_WIDTH-ADDRESS_WIDTH]),
+        .write_data(data_memory_write_source_mux),
+        .read_data(data_memory_output)
+    );
+    
     Control_Unit control_unit_instance( 
         .clk(clk),
         .reset(reset),
         .instruction(instruction),
-        .zero_flag(register_flags.zero),
+        .zero_flag(current_register_flags.zero),
         .register_write_enable(register_write_enable),
         .flag_register_write_enable(flag_register_write_enable),
         .jump_enable(jump_enable),

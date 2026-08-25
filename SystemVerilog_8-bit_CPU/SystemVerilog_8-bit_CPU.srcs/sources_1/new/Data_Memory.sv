@@ -6,6 +6,7 @@ module Data_Memory #(parameter ADDRESS_WIDTH = 8, DATA_WIDTH = 8)
     input logic clk,
     
     input logic write_enable,
+    input logic read_enable,
     
     input logic [ADDRESS_WIDTH-1:0] address,
     
@@ -30,9 +31,8 @@ module Data_Memory #(parameter ADDRESS_WIDTH = 8, DATA_WIDTH = 8)
             if (write_enable)
                 begin
                     memory[address] <= write_data;
-                    read_data <= write_data;
                 end
-            else
+            else if (read_enable)
                 begin
                     read_data <= memory[address];
                 end

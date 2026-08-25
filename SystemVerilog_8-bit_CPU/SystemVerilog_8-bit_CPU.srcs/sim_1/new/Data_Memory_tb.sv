@@ -7,6 +7,7 @@ module Data_Memory_tb #(parameter DATA_WIDTH = 8, ADDRESS_WIDTH = 8);
     logic clk;
     
     logic write_enable;
+    logic read_enable;
     
     logic [ADDRESS_WIDTH-1:0] address;
     
@@ -16,6 +17,7 @@ module Data_Memory_tb #(parameter DATA_WIDTH = 8, ADDRESS_WIDTH = 8);
     Data_Memory uut (
         .clk(clk),
         .write_enable(write_enable),
+        .read_enable(read_enable),
         .address(address),
         .write_data(write_data),
         .read_data(read_data)
@@ -32,6 +34,7 @@ module Data_Memory_tb #(parameter DATA_WIDTH = 8, ADDRESS_WIDTH = 8);
         begin
             clk = 0;
             write_enable = 0;
+            read_enable = 0;
             address = 0;
             write_data = '0;
             
@@ -45,7 +48,13 @@ module Data_Memory_tb #(parameter DATA_WIDTH = 8, ADDRESS_WIDTH = 8);
             @(posedge clk);
             #1 
             
+            @(negedge clk);
             write_enable = 0; 
+            read_enable = 1;
+            
+            @(posedge clk); 
+            #1
+            
             if (read_data == write_data)
                 begin
                     $display("SUCCESS: Expected data (%d) was written to the address cell %d", write_data, address);
@@ -55,17 +64,27 @@ module Data_Memory_tb #(parameter DATA_WIDTH = 8, ADDRESS_WIDTH = 8);
                     $display("FAIL: Expected data (%d) was not written to the address cell %d", write_data, address);
                 end
                 
+            @(negedge clk);
+            read_enable = 0;
+                
             #200
             @(negedge clk)
             
             write_enable = 1;
+            read_enable = 0;
             address = 17;
             write_data = -8'sd64;
             
             @(posedge clk);
             #1 
             
+            @(negedge clk);
             write_enable = 0; 
+            read_enable = 1;
+            
+            @(posedge clk); 
+            #1
+            
             if (read_data == write_data)
                 begin
                     $display("SUCCESS: Expected data (%d) was written to the address cell %d", write_data, address);
@@ -75,17 +94,27 @@ module Data_Memory_tb #(parameter DATA_WIDTH = 8, ADDRESS_WIDTH = 8);
                     $display("FAIL: Expected data (%d) was not written to the address cell %d", write_data, address);
                 end
             
+            @(negedge clk);
+            read_enable = 0;
+            
             #200
             @(negedge clk)
             
             write_enable = 1;
+            read_enable = 0;
             address = 0;
             write_data = '0;
             
             @(posedge clk);
             #1 
             
+            @(negedge clk);
             write_enable = 0; 
+            read_enable = 1;
+            
+            @(posedge clk); 
+            #1
+            
             if (read_data == write_data)
                 begin
                     $display("SUCCESS: Address cell %d was reset to zero", address);
@@ -94,18 +123,28 @@ module Data_Memory_tb #(parameter DATA_WIDTH = 8, ADDRESS_WIDTH = 8);
                 begin
                     $display("FAIL: Address cell %d was not reset to zero", address);
                 end
+                
+            @(negedge clk);
+            read_enable = 0;
             
             #200
             @(negedge clk)
             
             write_enable = 1;
+            read_enable = 0;
             address = 17;
             write_data = '0;
             
             @(posedge clk); 
             #1
             
+            @(negedge clk);
             write_enable = 0; 
+            read_enable = 1;
+            
+            @(posedge clk); 
+            #1
+            
             if (read_data == write_data)
                 begin
                     $display("SUCCESS: Address cell %d was reset to zero", address);
@@ -114,6 +153,9 @@ module Data_Memory_tb #(parameter DATA_WIDTH = 8, ADDRESS_WIDTH = 8);
                 begin
                     $display("FAIL: Address cell %d was not reset to zero", address);
                 end
+                
+            @(negedge clk);
+            read_enable = 0;
             
             #200 $finish;
         end

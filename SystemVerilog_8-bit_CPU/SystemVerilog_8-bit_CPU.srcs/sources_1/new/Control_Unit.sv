@@ -10,7 +10,7 @@ module Control_Unit #(parameter INSTRUCTION_WIDTH = 16, OPERATION_WIDTH = 4)
     output logic register_write_enable, 
     output logic flag_register_write_enable, 
     output logic jump_enable,
-    output logic pc_enable ,
+    output logic next_address_enable ,
     
     output logic data_memory_read,   
     output logic data_memory_write,      
@@ -28,7 +28,7 @@ module Control_Unit #(parameter INSTRUCTION_WIDTH = 16, OPERATION_WIDTH = 4)
             flag_register_write_enable = 1'b0;
             register_write_enable = 1'b0;
             jump_enable = 1'b0;
-            pc_enable   = 1'b1;
+            next_address_enable = 1'b1;
             
             data_memory_read = 1'b0;
             data_memory_write = 1'b0;
@@ -56,13 +56,16 @@ module Control_Unit #(parameter INSTRUCTION_WIDTH = 16, OPERATION_WIDTH = 4)
                 end
                 
                 4'b0010: begin
+                    
+                    next_address_enable = 1'b0;
                     jump_enable = 1'b1;
                 end
                 
                 4'b1001: begin
                     if (zero_flag)
                         begin
-                            jump_enable = 1;
+                            next_address_enable = 1'b0;
+                            jump_enable = 1'b1;
                         end
                 end
                 

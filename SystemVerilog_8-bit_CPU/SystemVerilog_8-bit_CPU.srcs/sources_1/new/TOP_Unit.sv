@@ -11,17 +11,16 @@ module TOP_Unit #(parameter INSTRUCTION_WIDTH = 16, OPERATION_WIDTH = 4, DATA_WI
 );
 
 
-
     logic signed [DATA_WIDTH-1:0] alu_result;
     
     
     logic [INSTRUCTION_WIDTH-1:0] instruction;
+    logic [ADDRESS_WIDTH-1:0] instruction_address;
     
-    logic [OPERATION_WIDTH-1:0] alu_operation;
     logic register_write_enable;  
     logic flag_register_write_enable;  
     logic jump_enable;
-    logic pc_enable;
+    logic next_address_enable;
     
     logic data_memory_read;   
     logic data_memory_write;      
@@ -32,8 +31,6 @@ module TOP_Unit #(parameter INSTRUCTION_WIDTH = 16, OPERATION_WIDTH = 4, DATA_WI
     logic signed [DATA_WIDTH-1:0] register_0_data;
     logic signed [DATA_WIDTH-1:0] register_1_data;
     
-    
-    flags_t register_flags_t;
     
     flags_t alu_register_flags;
     flags_t current_register_flags;
@@ -92,10 +89,24 @@ module TOP_Unit #(parameter INSTRUCTION_WIDTH = 16, OPERATION_WIDTH = 4, DATA_WI
         .register_write_enable(register_write_enable),
         .flag_register_write_enable(flag_register_write_enable),
         .jump_enable(jump_enable),
-        .pc_enable(pc_enable),
+        .pc_enable(next_address_enable),
         .data_memory_read(data_memory_read),
         .data_memory_write(data_memory_write),
         .register_write_source(register_write_source)
+    );
+    
+    Instruction_Memory instruction_memory_instance (
+        .address(instruction_address),
+        .instruction(instruction)
+    );
+    
+    Program_Counter program_counter_instance (
+        .clk(clk),
+        .reset(reset),
+        .next_address_enable(next_address_enable),
+        .jump_enable(jump_enable),
+        .target_address(instruction[INSTRUCTION_WIDTH-OPERATION_WIDTH-REGISTER_SELECTION_WIDTH-1:INSTRUCTION_WIDTH-OPERATION_WIDTH-REGISTER_SELECTION_WIDTH-ADDRESS_WIDTH]),
+        .instruction_address(instruction_address)
     );
     
     

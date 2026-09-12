@@ -13,19 +13,7 @@ module Instruction_Memory #(parameter ADDRESS_WIDTH = 8, INSTRUCTION_WIDTH = 16)
 
     initial
         begin
-            // The solution bellow will be used at the final stage, when connections berween all modulel
-            // and "machine code" file will be implemented.
-            // $readmemh("program.hex", memory);
-            
-            // Now the following "blanking plug" is used for tests:
-            memory[0] = 16'h1234;
-            memory[1] = 16'h3324;
-            memory[2] = 16'h2131;
-            
-            for (int i = 3; i < 256; i++)
-                begin
-                    memory[i] = '0;
-                end
+            $readmemh("CPU_Commands.mem", memory);
         end
         
         assign instruction = memory[address];

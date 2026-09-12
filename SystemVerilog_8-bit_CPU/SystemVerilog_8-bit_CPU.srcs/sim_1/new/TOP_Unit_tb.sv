@@ -23,7 +23,12 @@ module TOP_Unit_tb();
     initial
         begin
             clk = 0;
+            reset = 1;
+            
+            #50;
             reset = 0;
+            
+            
         end
 
 endmodule

@@ -10,7 +10,7 @@ module Register_File #(parameter DATA_WIDTH = 8, REGISTER_SELECTION_WIDTH = 1)
     input logic write_register_enable,
     input logic [REGISTER_SELECTION_WIDTH-1:0] write_register_select,
     
-    input logic [DATA_WIDTH-1:0] write_register_data,
+    input logic signed [DATA_WIDTH-1:0] write_register_data,
     
     output logic signed [DATA_WIDTH-1:0] read_register_0,
     output logic signed [DATA_WIDTH-1:0] read_register_1

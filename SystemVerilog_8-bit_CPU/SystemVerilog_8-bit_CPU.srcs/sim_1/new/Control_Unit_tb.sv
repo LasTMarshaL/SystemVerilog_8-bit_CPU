@@ -2,17 +2,20 @@
 
 module Control_Unit_tb #(parameter INSTRUCTION_WIDTH = 16, OPERATION_WIDTH = 4);
 
-
+    
+    logic clk;
+    logic reset;
+    
     logic [INSTRUCTION_WIDTH-1:0] instruction;
     
     logic [OPERATION_WIDTH-1:0] alu_operation;
     logic zero_flag;
     logic register_write_enable;  
     logic jump_enable;
-    logic pc_enable;
+    logic next_address_enable;
     
-    logic data_memory_read;  
-    logic data_memory_write;      
+    logic data_memory_read_enable;  
+    logic data_memory_write_enable;      
     logic [1:0] register_write_source;
     
     
@@ -22,19 +25,27 @@ module Control_Unit_tb #(parameter INSTRUCTION_WIDTH = 16, OPERATION_WIDTH = 4);
         .zero_flag(zero_flag),
         .register_write_enable(register_write_enable),
         .jump_enable(jump_enable),
-        .pc_enable(pc_enable),
-        .data_memory_read(data_memory_read),
-        .data_memory_write(data_memory_write),
+        .next_address_enable(next_address_enable),
+        .data_memory_read_enable(data_memory_read_enable),
+        .data_memory_write_enable(data_memory_write_enable),
         .register_write_source(register_write_source)
     );
     
     
+    always
+        begin
+            #5 clk = ~clk;
+        end
+    
     initial
-        begin 
+        begin
+            clk = 0;
+            reset = 1;
             zero_flag = 1'b0;
             instruction = '0;
             
             #200
+            @(negedge clk)
             
             instruction = {4'b1101, 12'b0};
             
@@ -57,17 +68,22 @@ module Control_Unit_tb #(parameter INSTRUCTION_WIDTH = 16, OPERATION_WIDTH = 4);
                 end
                 
             #200
+            @(negedge clk)
             
             instruction = {4'b1011, 12'b0};
             
-            #5
-            if (data_memory_read == 1'b1)
+            #20
+   
+            @(posedge clk)
+            #1 
+            
+            if (data_memory_read_enable == 1'b1)
                 begin
-                     $display("SUCCESS LOAD: Expected result (%d) was received correctly", data_memory_read);
+                     $display("SUCCESS LOAD: Expected result (%d) was received correctly", data_memory_read_enable);
                 end
             else
                 begin
-                    $display("FAIL LOAD: Expected result (%d) was not received correctly", data_memory_read);
+                    $display("FAIL LOAD: Expected result (%d) was not received correctly", data_memory_read_enable);
                 end
             if (register_write_enable == 1'b1)
                 begin
@@ -87,17 +103,19 @@ module Control_Unit_tb #(parameter INSTRUCTION_WIDTH = 16, OPERATION_WIDTH = 4);
                 end
                 
             #200
+            @(negedge clk)
             
             instruction = {4'b0100, 12'b0};
             
-            #5
-            if (data_memory_write == 1'b1)
+            @(posedge clk)
+            #1 
+            if (data_memory_write_enable == 1'b1)
                 begin
-                     $display("SUCCESS STORE: Expected result (%d) was received correctly", data_memory_write);
+                     $display("SUCCESS STORE: Expected result (%d) was received correctly", data_memory_write_enable);
                 end
             else
                 begin
-                    $display("FAIL STORE: Expected result (%d) was not received correctly", data_memory_write);
+                    $display("FAIL STORE: Expected result (%d) was not received correctly", data_memory_write_enable);
                 end
             if (register_write_enable == 1'b0)
                 begin
@@ -109,10 +127,12 @@ module Control_Unit_tb #(parameter INSTRUCTION_WIDTH = 16, OPERATION_WIDTH = 4);
                 end
                 
             #200
+            @(negedge clk)
             
             instruction = {4'b0010, 12'b0};
             
-            #5
+            @(posedge clk)
+            #1 
             if (jump_enable == 1'b1)
                 begin
                      $display("SUCCESS JMP: Expected result (%d) was received correctly", jump_enable);
@@ -123,11 +143,13 @@ module Control_Unit_tb #(parameter INSTRUCTION_WIDTH = 16, OPERATION_WIDTH = 4);
                 end
                 
             #200
+            @(negedge clk)
             
             zero_flag = 1'b1;
             instruction = {4'b1001, 12'b0};
             
-            #5
+            @(posedge clk)
+            #1 
             if (jump_enable == 1'b1)
                 begin
                      $display("SUCCESS JZ: Expected result (%d) was received correctly", jump_enable);
@@ -138,11 +160,14 @@ module Control_Unit_tb #(parameter INSTRUCTION_WIDTH = 16, OPERATION_WIDTH = 4);
                 end
                 
             #200
+            @(negedge clk)
             
             zero_flag = 1'b0;
             instruction = {4'b0001, 12'b0};
             
-            #5
+            @(posedge clk)
+            #1 
+            
             if (register_write_enable == 1'b1)
                 begin
                      $display("SUCCESS ALU: Expected result (%d) was received correctly", register_write_enable);

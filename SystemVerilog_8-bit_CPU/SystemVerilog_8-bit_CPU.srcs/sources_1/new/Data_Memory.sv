@@ -15,7 +15,7 @@ module Data_Memory #(parameter ADDRESS_WIDTH = 8, DATA_WIDTH = 8)
 );
 
 
-    logic [DATA_WIDTH-1:0] memory [0:(1<<ADDRESS_WIDTH)-1];
+    logic signed [DATA_WIDTH-1:0] memory [0:(1<<ADDRESS_WIDTH)-1];
     
     initial
         begin

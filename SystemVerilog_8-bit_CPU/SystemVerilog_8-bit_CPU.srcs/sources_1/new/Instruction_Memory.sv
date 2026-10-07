@@ -13,7 +13,7 @@ module Instruction_Memory #(parameter ADDRESS_WIDTH = 8, INSTRUCTION_WIDTH = 16)
 
     initial
         begin
-            $readmemh("CPU_Commands.mem", memory);
+            //$readmemh("CPU_Commands.mem", memory);
         end
         
         assign instruction = memory[address];

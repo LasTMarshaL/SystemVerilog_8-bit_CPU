@@ -21,7 +21,7 @@ This repository contains a 8-bit CPU to implement some elementary commands and e
 
 ## 🚀 Roadmap
 * **CPU architecture (SystemVerilog)**
-- [x] ALU (Mathematical & Logical commands/calculations.
+- [x] ALU (Mathematical & Logical commands/calculations).
 - [x] Regsiter File (Registers read/write control).
 - [X] Flag Register (Carry, Zero, Sign, Overflow).
 - [X] Data Memory (Read/write constants & variables).
@@ -29,30 +29,9 @@ This repository contains a 8-bit CPU to implement some elementary commands and e
 - [X] Program Counter (Instruction address tracking & flow control).
 - [X] Control Unit (Instructions decoding & distribution).
 - [X] CPU top (Unite all parts & data transfer).
-- [ ] Extra tests
-* These are current tasks (goals), the next stage will be creating Python script for translating commands into machine code and loading instructions ("mini-assembler" for test). After that, connecting RISC-V standard compilator to translate C commands into machine code and launch sterling PL <-> CPU interaction.
+* The next project stage is located in the "RISC-V-Standard-Modernization" branch.
   
 ## 🧪 Used Technologies & Software
 * Vivado (Development environment)
 * SystemVerilog (Hardware description
 * Vivado Simulator (Digital Simulation)
-
-## 🖼️ Screenshots
-**ALU**
-<img width="974" height="265" alt="image" src="https://github.com/user-attachments/assets/2ef06271-8a6b-4d85-9972-dd7d802fbae3" />
-**Register File**
-<img width="974" height="226" alt="image" src="https://github.com/user-attachments/assets/5f520bd1-b0b1-46c1-a06b-4bb2cced574c" />
-**Flag Register**
-<img width="974" height="168" alt="image" src="https://github.com/user-attachments/assets/832493dd-a8ff-4225-a665-012ca032dfad" />
-**Data Memory**
-<img width="974" height="193" alt="image" src="https://github.com/user-attachments/assets/db86e434-d22d-4fa7-90cc-ff2c8a38894c" />
-**Instruction Memoty**
-<img width="974" height="298" alt="image" src="https://github.com/user-attachments/assets/8193cea3-8313-4478-a3f0-b75fae4f0dd7" />
-**Program Counter**
-![Uploading image.png…]()
-**Control Unit**
-![Uploading image.png…]()
-
-
-
-

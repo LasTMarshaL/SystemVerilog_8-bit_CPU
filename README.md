@@ -21,27 +21,15 @@ This branch contains a CPU (developed previously) to implement some elementary c
 * ⚠️!The author bears no responsibility for the reader's actions!⚠️
 
 ## 🚀 Roadmap
-<<<<<<< HEAD
 * **CPU Moduludus Modernization**
 - [X] ALU (Mathematical & Logical commands/calculations).
 - [X] Regsiter File (Registers read/write control).
-- [] Data Memory (Read/write constants & variables).
-- [] Instruction Memory (Read/write instructions).
-- [] Program Counter (Instruction address tracking & flow control).
-- [] Control Unit (Instructions decoding & distribution).
-- [] CPU TOP (Unite all parts & data transfer).
-* These are current tasks (goals), the next stage will be connecting RISC-V standard compilator to translate C commands into machine code and launch sterling PL <-> CPU interaction.
-=======
-* **CPU Moduless Modernization**
-- [X] Register File (Registers read/write control).
-- [ ] ALU (Mathematical & Logical commands/calculations).
 - [ ] Data Memory (Read/write constants & variables).
 - [ ] Instruction Memory (Read/write instructions).
 - [ ] Program Counter (Instruction address tracking & flow control).
 - [ ] Control Unit (Instructions decoding & distribution).
 - [ ] CPU TOP (Unite all parts & data transfer).
-* These are current tasks (goals), the next stage will be connecting RISC-V standard compilator (GCC) to translate C commands into machine code and launch PL <-> CPU interaction.
->>>>>>> cefc4a0f3e2279001fc54192e1b15e55be1c8981
+* These are current tasks (goals), the next stage will be connecting RISC-V standard compilator to translate C commands into machine code and launch sterling PL <-> CPU interaction.
   
 ## 🧪 Used Technologies & Software
 * Vivado (Development environment)

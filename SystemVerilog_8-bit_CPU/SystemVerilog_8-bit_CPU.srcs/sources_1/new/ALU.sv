@@ -1,71 +1,89 @@
 `timescale 1ns / 1ps
 
 
-import CPU_Package::*;
-
-
-module ALU #(parameter DATA_WIDTH = 8)
+module ALU #(parameter DATA_WIDTH = 32)
 (
-    input logic [DATA_WIDTH/2-1:0] command,
-    input logic signed [DATA_WIDTH-1:0] data_in_operand_a,
-    input logic signed [DATA_WIDTH-1:0] data_in_operand_b,
-    input logic carry_in,
+    input logic [6:0] operation_code,
+    input logic [2:0] function3,
+    input logic [6:0] function7,
     
-    output logic signed [DATA_WIDTH-1:0] data_out,
+    input logic [DATA_WIDTH-1:0] data_in_operand_a,
+    input logic [DATA_WIDTH-1:0] data_in_operand_b,
     
-    output flags_t flags
+    output logic [DATA_WIDTH-1:0] data_out,
+    output logic zero,
+    output logic ltu,
+    output logic lt
 );
 
 
-    logic signed [DATA_WIDTH:0] temprorary_sum;
+    logic [DATA_WIDTH:0] temprorary_sum;
+    logic alu_zero;
+    logic alu_ltu;
+    logic alu_lt;
+    
+    assign zero = (alu_zero == 1 ? 1 : 0);
+    assign lt = (alu_lt == 1 ? 1 : 0);
+    assign ltu = (alu_ltu == 1 ? 1 : 0);
 
     always_comb 
         begin
             data_out = '0;
-            flags.overflow = '0;
-            flags.sign = '0;
-            flags.carry_out = '0;
+            alu_lt = ($signed(data_in_operand_a) < $signed(data_in_operand_b) ? 1 : 0);
+            alu_ltu = (data_in_operand_a < data_in_operand_b ? 1 : 0);
             
-            case (command)
-                4'b0001: 
-                    begin
-                        temprorary_sum = data_in_operand_a + data_in_operand_b;
-                        data_out = temprorary_sum[DATA_WIDTH-1:0];
-                        flags.carry_out = temprorary_sum[DATA_WIDTH];
-                        flags.overflow = ((data_in_operand_a[DATA_WIDTH-1] == data_in_operand_b[DATA_WIDTH-1]) & data_out[DATA_WIDTH-1] != data_in_operand_a[DATA_WIDTH-1]);
-                    end
-                4'b0011:
-                    begin
-                        temprorary_sum = data_in_operand_a - data_in_operand_b;
-                        data_out = temprorary_sum[DATA_WIDTH-1:0];
-                        flags.carry_out = temprorary_sum[DATA_WIDTH];
-                        flags.overflow = ((data_in_operand_a[DATA_WIDTH-1] != data_in_operand_b[DATA_WIDTH-1]) & data_out[DATA_WIDTH-1] != data_in_operand_a[DATA_WIDTH-1]);
-                    end
-                4'b0111: 
-                    begin
-                        temprorary_sum = data_in_operand_a + data_in_operand_b + carry_in;
-                        data_out = temprorary_sum[DATA_WIDTH-1:0];
-                        flags.carry_out = temprorary_sum[DATA_WIDTH];
-                        flags.overflow = ((data_in_operand_a[DATA_WIDTH-1] == data_in_operand_b[DATA_WIDTH-1]) & data_out[DATA_WIDTH-1] != data_in_operand_a[DATA_WIDTH-1]);
-                    end
-                4'b1111:
-                    begin
-                        temprorary_sum = data_in_operand_a - data_in_operand_b - carry_in;
-                        data_out = temprorary_sum[DATA_WIDTH-1:0];
-                        flags.carry_out = temprorary_sum[DATA_WIDTH];
-                        flags.overflow = ((data_in_operand_a[DATA_WIDTH-1] != data_in_operand_b[DATA_WIDTH-1]) & data_out[DATA_WIDTH-1] != data_in_operand_a[DATA_WIDTH-1]);
-                    end
-                4'b1000: data_out = data_in_operand_a & data_in_operand_b; 
-                4'b1100: data_out = data_in_operand_a | data_in_operand_b; 
-                4'b1110: data_out = -data_in_operand_a; 
-                4'b0101: data_out = data_in_operand_a <<< 1; 
-                4'b1010: data_out = data_in_operand_a >>> 1; 
-                4'b0110: data_out = ~data_in_operand_a;
-                default: data_out = '0;
+            case (operation_code)
+                7'b0110011: // R block
+                    case (function3)
+                        3'b000: 
+                            case (function7)
+                                7'b0000000: temprorary_sum = data_in_operand_a + data_in_operand_b; // ADD
+                                7'b0100000: temprorary_sum = data_in_operand_a - data_in_operand_b; // SUB
+                                default:    temprorary_sum = '0;
+                            endcase
+                        3'b001: 
+                            case (function7)
+                                7'b0000000: temprorary_sum = data_in_operand_a << data_in_operand_b[4:0]; // SLL
+                                default:    temprorary_sum = '0;
+                            endcase
+                        3'b010: 
+                            case (function7)
+                                7'b0000000: temprorary_sum = ($signed(data_in_operand_a) < $signed(data_in_operand_b) ? 32'b1 : 32'b0); // SLT
+                                default:    temprorary_sum = '0;
+                            endcase
+                        3'b011: 
+                            case (function7)
+                                7'b0000000: temprorary_sum = (data_in_operand_a < data_in_operand_b ? 1 : 0); // SLTU
+                                default:    temprorary_sum = '0;
+                            endcase
+                        3'b100: 
+                            case (function7)
+                                7'b0000000: temprorary_sum = (data_in_operand_a ^ data_in_operand_b); // XOR
+                                default:    temprorary_sum = '0;
+                            endcase
+                        3'b101: 
+                            case (function7)
+                                7'b0000000: temprorary_sum = data_in_operand_a >> data_in_operand_b[4:0]; // SRL
+                                7'b0100000: temprorary_sum = $unsigned($signed(data_in_operand_a) >>> data_in_operand_b[4:0]); // SRA
+                                default:    temprorary_sum = '0;
+                            endcase
+                        3'b110: 
+                            case (function7)
+                                7'b0000000: temprorary_sum = (data_in_operand_a | data_in_operand_b); // OR
+                                default:    temprorary_sum = '0;
+                            endcase
+                        3'b111: 
+                            case (function7)
+                                7'b0000000: temprorary_sum = (data_in_operand_a & data_in_operand_b); // AND
+                                default:    temprorary_sum = '0;
+                            endcase
+                        default: temprorary_sum = '0;
+                    endcase
+                default: temprorary_sum = '0;
             endcase
             
-            flags.zero = (data_out == '0);
-            flags.sign = data_out[DATA_WIDTH-1];
+            data_out = temprorary_sum;
+            alu_zero = (data_out == 0 ? 1 : 0);
         end
     
 

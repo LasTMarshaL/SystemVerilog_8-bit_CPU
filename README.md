@@ -22,8 +22,8 @@ This branch contains a CPU (developed previously) to implement some elementary c
 
 ## 🚀 Roadmap
 * **CPU Moduludus Modernization**
+- [X] ALU (Mathematical & Logical commands/calculations).
 - [X] Regsiter File (Registers read/write control).
-- [] ALU (Mathematical & Logical commands/calculations).
 - [] Data Memory (Read/write constants & variables).
 - [] Instruction Memory (Read/write instructions).
 - [] Program Counter (Instruction address tracking & flow control).
